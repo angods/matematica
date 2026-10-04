@@ -1,8 +1,23 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Guías de Matemática UNaM</title>
+<!doctype html><html lang="es-AR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#080b12"><meta name="description" content="Guías de Matemática UNaM - FCEQyN Bioquímica: interactivo, con visualizaciones, comprobadores y resoluciones paso a paso"><title>Guías de Matemática UNaM</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital@0;1&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<style>
+/* Critical CSS - loads first to prevent FOUC */
+:root{color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;padding:0;font:15px/1.55 var(--f-body,'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif);background:var(--bg,#080b12);color:var(--ink,#e9edf7);min-height:100vh;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+img{max-width:100%;height:auto;display:block}
+svg{display:block;max-width:100%}
+[hidden]{display:none!important}
+*{[box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:2px solid var(--alt,#ffb454);outline-offset:2px}
+::selection{background:rgba(124,156,255,.35)}
+.wrap{max-width:1000px;margin:0 auto;padding-inline:16px;padding-block:0 64px}
+</style>
 <style>
 /* Layout: cuaderno cuadriculado — cabecera, fila de pestañas pegajosa, una unidad por panel con tarjetas de ejercicio numeradas como en la guía */
 :root{
@@ -23,6 +38,9 @@
 body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--f-body);min-height:100vh;
   background-image:radial-gradient(900px 500px at 85% -10%,rgba(124,156,255,.13),transparent 60%),radial-gradient(700px 420px at -10% 10%,rgba(167,139,250,.08),transparent 60%),linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
   background-size:auto,auto,28px 28px,28px 28px;background-attachment:fixed,fixed,scroll,scroll}
+@media (prefers-reduced-motion: reduce){
+  body{background-attachment:scroll,scroll,scroll,scroll}
+}
 ::selection{background:rgba(124,156,255,.35)}
 .wrap{max-width:1000px;margin:0 auto;padding-inline:16px;padding-block:0 64px}
 header.top{padding-block:32px 18px;display:flex;flex-wrap:wrap;gap:16px 32px;align-items:end;justify-content:space-between}
@@ -65,13 +83,14 @@ section.panel>h2{font:700 28px/1.1 var(--f-display);margin:6px 0 0;letter-spacin
 .fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.86em;line-height:1.15;margin:0 .1em}
 .fr>span:first-child{border-bottom:1px solid currentColor;padding:0 .2em}
 .fr>span:last-child{padding:0 .2em}
-.rad{white-space:nowrap}
-.rad .ri{font-size:.62em;margin-right:-.3em;vertical-align:.9em}
-.rad .rb{border-top:1.4px solid currentColor;padding:0 .15em;margin-left:.02em}
-.rad:has(.fr){display:inline-flex;align-items:stretch;vertical-align:middle}
-.rad:has(.fr)>.rs{display:flex;align-items:flex-end;font-size:1.45em;line-height:1;transform:scaleY(1.25);transform-origin:bottom}
-.rad:has(.fr)>.rb{display:inline-flex;align-items:center;padding-top:.15em}
-.rad:has(.fr)>.rb>.fr{margin:0}
+.rad{display:inline-block;white-space:nowrap}
+.rad .rw{position:relative;display:inline-block;padding-left:.95em}
+.rad .rs{position:absolute;left:0;top:.04em;bottom:.02em;width:.95em;height:auto;overflow:visible;color:inherit}
+.rad .rs path{fill:none;stroke:currentColor;stroke-width:1.3;stroke-linejoin:miter;stroke-linecap:butt;vector-effect:non-scaling-stroke}
+.rad .rs path.th{stroke-width:2.4}
+.rad .ri{display:inline-block;font-size:.62em;line-height:1;vertical-align:1.25em;min-width:.8em;text-align:right;margin-right:-.75em;padding-left:.1em;position:relative;z-index:1}
+.rad .rb{display:inline-block;border-top:1.3px solid currentColor;padding:.12em .2em 0 .1em;line-height:1.2}
+.rad .rb>.fr{margin:0}
 sup{line-height:0}
 
 .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px;align-items:start}
@@ -104,6 +123,52 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 .fb.ok{color:var(--ok);font-weight:600}
 .fb.bad{color:var(--bad)}
 .hint{font-size:12px;color:var(--muted)}
+.hint.fm{font-family:var(--f-math);font-size:17px;line-height:2.1;color:var(--ink);white-space:normal;max-width:100%;overflow-x:auto;overflow-y:hidden;padding:4px 0}
+.rad{max-width:100%}
+.rad-k{display:inline-block;white-space:nowrap;vertical-align:baseline}
+.rad-k .katex{font-size:1.08em;color:inherit}
+/* halo animado (cian → azul → violeta → rosa) para propiedades */
+@property --ha{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes haspin{to{--ha:360deg}}
+:root{--halo:conic-gradient(from var(--ha),#22d3ee,#3b82f6,#8b5cf6,#d946ef,#ec4899,#8b5cf6,#3b82f6,#22d3ee);--halo-bg:#141824}
+.halo{position:relative;border:1.5px solid transparent;background:linear-gradient(var(--halo-bg),var(--halo-bg)) padding-box,var(--halo) border-box;animation:haspin 5s linear infinite}
+.halo::after{content:'';position:absolute;inset:-2px;border-radius:inherit;background:var(--halo);filter:blur(9px);opacity:.5;z-index:-1;animation:haspin 5s linear infinite;pointer-events:none;transition:opacity .3s}
+.props{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;isolation:isolate}
+.prop{display:inline-flex;align-items:center;white-space:nowrap;max-width:100%;font-family:var(--f-math);font-size:16px;line-height:1.6;color:#eef1ff;border-radius:10px;padding:5px 13px}
+.prop .katex{font-size:1.08em}
+/* botón + ventana de propiedades */
+.hside{position:relative;z-index:1;display:flex;flex-direction:column;gap:8px;min-width:220px;flex:0 1 280px}
+.hside .progress{flex:none;min-width:0}
+.propbtn{--halo-bg:rgba(14,18,30,.96);display:flex;align-items:center;gap:10px;width:100%;padding:9px 14px;border-radius:12px;cursor:pointer;font:600 14px var(--f-display);color:var(--ink);text-align:left;transition:transform .25s var(--ease)}
+.propbtn:hover{transform:translateY(-1px)}
+.propbtn:hover::after{opacity:.85}
+.propbtn:focus-visible{outline:2px solid var(--alt);outline-offset:3px}
+.propbtn .pi{display:grid;place-items:center;width:24px;height:24px;border-radius:6px;font:700 15px var(--f-math);color:#fff;background:linear-gradient(135deg,#22d3ee,#8b5cf6 55%,#ec4899)}
+.propbtn .pg{margin-left:auto;font:600 11px var(--f-mono);padding:2px 6px;border-radius:4px;background:var(--line);color:var(--muted)}
+.propdlg{--halo-bg:#0c1120;width:min(880px,calc(100vw - 24px));max-height:min(86vh,900px);padding:0;border-radius:16px;color:var(--ink);box-shadow:0 30px 80px -20px #000,0 0 50px -16px rgba(139,92,246,.55);overflow:hidden;flex-direction:column}
+.propdlg[open]{display:flex}
+.propdlg::after{display:none}
+.propdlg::backdrop{background:rgba(4,6,12,.7);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.propdlg[open]>*{animation:pdIn .3s var(--ease) both}
+@keyframes pdIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pd-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 6px}
+.pd-head h2{margin:0;font:800 22px var(--f-display);letter-spacing:-.01em;background:linear-gradient(100deg,#fff 30%,#a5b4fc 65%,#f0abfc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pd-x{border:1px solid var(--line);background:transparent;color:var(--muted);width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:15px}
+.pd-x:hover{color:var(--ink);border-color:var(--muted)}
+.pd-tabs{display:flex;gap:4px;overflow-x:auto;padding:4px 14px 0;border-bottom:1px solid var(--line);scrollbar-width:thin}
+.pd-tabs button{flex:0 0 auto;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--muted);font:600 13px var(--f-display);padding:8px 10px;cursor:pointer;white-space:nowrap}
+.pd-tabs button .n{font:600 11px var(--f-mono);margin-right:6px;padding:2px 5px;border-radius:4px;background:var(--line);color:var(--ink)}
+.pd-tabs button[aria-pressed="true"]{color:var(--ink);border-image:linear-gradient(90deg,#22d3ee,#8b5cf6,#ec4899) 0 0 1 0/0 0 3px 0}
+.pd-tabs button[aria-pressed="true"] .n{background:linear-gradient(135deg,#22d3ee,#8b5cf6 55%,#ec4899);color:#fff}
+.pd-body{overflow-y:auto;padding:6px 18px 22px}
+.pd-body h3{margin:18px 0 0;font:600 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.pd-body .props{margin-top:10px}
+.pd-body .prop{flex-wrap:wrap;row-gap:0}
+.pd-body .prop small{white-space:normal}
+@media (max-width:520px){.pd-head{padding:14px 14px 4px}.pd-body{padding:4px 12px 18px}.pd-body .prop{font-size:15px}}
+@media (prefers-reduced-motion:reduce){.halo,.halo::after{animation:none}}
+.prop small{font:500 12px var(--f-body);color:#a5b4fc;margin-left:8px}
+.prop .rad,.prop .rb{border-color:currentColor}
 
 .mc{display:flex;flex-direction:column;gap:8px}
 .mc .q{font-size:13px;color:var(--muted)}
@@ -347,11 +412,19 @@ li.pp-step{padding:10px 14px}
       <div class="eyebrow" id="geyebrow">UNaM · FCEQyN · Bioquímica · Guía N°1</div>
       <h1 id="gtitle">Números reales</h1>
     </div>
-    <div class="progress" aria-label="Progreso">
-      <div class="lbl"><span id="plbl">Comprobados en esta guía</span><b id="prog">0 de 0</b></div>
-      <div class="pbar"><i id="pbar"></i></div>
+    <div class="hside">
+      <button type="button" class="propbtn halo" id="propbtn" aria-haspopup="dialog"><span class="pi" aria-hidden="true">∑</span><span>Propiedades</span><span class="pg" id="propbtn-g">G1</span></button>
+      <div class="progress" aria-label="Progreso">
+        <div class="lbl"><span id="plbl">Comprobados en esta guía</span><b id="prog">0 de 0</b></div>
+        <div class="pbar"><i id="pbar"></i></div>
+      </div>
     </div>
   </header>
+  <dialog class="propdlg halo" id="propdlg" aria-labelledby="propdlg-t">
+    <div class="pd-head"><h2 id="propdlg-t">Propiedades</h2><button type="button" class="pd-x" id="propdlg-x" aria-label="Cerrar">✕</button></div>
+    <nav class="pd-tabs" id="pd-tabs" aria-label="Guía"></nav>
+    <div class="pd-body" id="pd-body"></div>
+  </dialog>
   <div class="navs"><nav class="guides" id="guides" aria-label="Guías"></nav><nav class="tabs" id="tabs" role="tablist"></nav></div>
   <main id="main"></main>
 </div>
@@ -363,12 +436,31 @@ const NS='http://www.w3.org/2000/svg';
 function S(tag,a={},p){const e=document.createElementNS(NS,tag);for(const k in a)e.setAttribute(k,a[k]);if(tag==='path'&&/\bcurve/.test(a.class||'')&&!/dashed/.test(a.class||'')){e.setAttribute('pathLength','1');e.classList.add('drawin')}if(p)p.appendChild(e);return e}
 function H(tag,a={},html){const e=document.createElement(tag);for(const k in a){if(k==='class')e.className=a[k];else e.setAttribute(k,a[k])}if(html!==undefined)e.innerHTML=html;return e}
 const REDUCE=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// respaldo de @property --ha (giro del halo) para navegadores que ignoran la regla CSS
+try{CSS.registerProperty({name:'--ha',syntax:'<angle>',inherits:false,initialValue:'0deg'})}catch(e){}
 function tween(dur,fn,done){if(REDUCE){fn(1,1);done&&done();return}const t0=performance.now();(function f(n){const k=Math.min(1,Math.max(0,(n-t0)/dur));const e=k*k*k*(k*(k*6-15)+10);fn(e,k);if(k<1)requestAnimationFrame(f);else done&&done()})(t0)}
 const fmt=(v,d=3)=>{if(!isFinite(v))return v>0?'+∞':'−∞';const r=+v.toFixed(d);return (Object.is(r,-0)?0:r).toLocaleString('es-AR',{maximumFractionDigits:d}).replace('-','−')};
 const sci=v=>{const e=Math.floor(Math.log10(Math.abs(v)));const m=v/Math.pow(10,e);return `${fmt(m,3)} × 10<sup>${e}</sup>`};
 // math shorthands
-const F=(a,b)=>`<span class="fr"><span>${a}</span><span>${b}</span></span>`;
-const R=(i,b)=>`<span class="rad">${i?`<sup class="ri">${i}</sup>`:''}<span class="rs">√</span><span class="rb">${b}</span></span>`;
+// TEX: html generado por F/R → su LaTeX, para poder anidarlos dentro de una raíz renderizada con KaTeX
+const TEX=new Map();
+function tex(h){
+  h=String(h);const ph=[];
+  [...TEX.keys()].filter(k=>h.includes(k)).sort((a,b)=>b.length-a.length).forEach(k=>{if(h.includes(k)){h=h.split(k).join(`\u0001${ph.length}\u0002`);ph.push(TEX.get(k))}});
+  h=h.replace(/&nbsp;/g,' ').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&')
+     .replace(/<sup[^>]*>(.*?)<\/sup>/g,'^{$1}').replace(/<sub[^>]*>(.*?)<\/sub>/g,'_{$1}').replace(/<[^>]+>/g,'')
+     .replace(/\b(sen|sin|cos|tg|tan|cotg|sec|cosec|ln|log|exp|arcsen|arccos|arctg)\b/g,'\\operatorname{$&}')
+     .replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹]+/g,s=>'^{'+[...s].map(c=>'⁰¹²³⁴⁵⁶⁷⁸⁹'.indexOf(c)).join('')+'}')
+     .replace(/·/g,'\\cdot ').replace(/[−–]/g,'-').replace(/±/g,'\\pm ').replace(/×/g,'\\times ').replace(/′/g,"'").replace(/∞/g,'\\infty ').replace(/π/g,'\\pi ').replace(/%/g,'\\%');
+  return h.replace(/\u0001(\d+)\u0002/g,(_,n)=>`{${ph[n]}}`);
+}
+const F=(a,b)=>{const h=`<span class="fr"><span>${a}</span><span>${b}</span></span>`;if(window.katex)TEX.set(h,`\\frac{${tex(a)}}{${tex(b)}}`);return h};
+const Rsvg=(i,b)=>`<span class="rad">${i?`<sup class="ri">${i}</sup>`:''}<span class="rw"><svg class="rs" viewBox="0 0 10 20" preserveAspectRatio="none" aria-hidden="true"><path d="M0.3 11.5L2.3 10L5 19.3L9.9 0.65"/><path class="th" d="M2.3 10L5 19.3"/></svg><span class="rb">${b}</span></span></span>`;
+const R=(i,b)=>{
+  if(!window.katex)return Rsvg(i,b);
+  const t=`\\sqrt${i?`[${tex(i)}]`:''}{${tex(b)}}`;
+  let h;try{h=`<span class="rad-k">${katex.renderToString(t,{throwOnError:true,strict:false})}</span>`}catch(e){return Rsvg(i,b)}
+  TEX.set(h,t);return h};
 const x='<i>x</i>',y='<i>y</i>',z='<i>z</i>',w='<i>w</i>',p='<i>p</i>',t='<i>t</i>',c='<i>c</i>',b='<i>b</i>';
 const sp=s=>`<sup>${s}</sup>`;
 
@@ -530,6 +622,50 @@ const SECTIONS=[
  {g:'g5',id:'lim1',n:'1–3',t:'Límites y laterales'},{g:'g5',id:'lim2',n:'4–7',t:'Cálculo de límites'},{g:'g5',id:'asint',n:'8–10',t:'Asíntotas'},{g:'g5',id:'cont',n:'11–17',t:'Continuidad'},{g:'g5',id:'g5pp',n:'★',t:'Resolver paso a paso',pp:1},
  {g:'g6',id:'dvel',n:'1–4',t:'Velocidad y pendiente'},{g:'g6',id:'ddef',n:'5–6',t:'Definición'},{g:'g6',id:'dreg',n:'7–8',t:'Reglas de derivación'},{g:'g6',id:'dmas',n:'9–11',t:'Derivabilidad y más'},{g:'g6',id:'g6pp',n:'★',t:'Resolver paso a paso',pp:1},
  {g:'gx',id:'xreal',n:'1',t:'Números reales'},{g:'gx',id:'xvec',n:'2',t:'Vectores'},{g:'gx',id:'xrec',n:'3',t:'Rectas, planos y cónicas'},{g:'gx',id:'xfun',n:'4',t:'Funciones y modelos'},{g:'gx',id:'xlim',n:'5',t:'Límites y continuidad'},{g:'gx',id:'xder',n:'6',t:'Derivadas'}];
+/* ---------- propiedades de cada guía (botón del encabezado) ---------- */
+// cada propiedad: LaTeX, o [LaTeX, aclaración]
+const PROPS={
+ g1:[
+  ['Potencias',[String.raw`a^m\cdot a^n=a^{m+n}`,String.raw`\dfrac{a^m}{a^n}=a^{m-n}`,String.raw`(a^m)^n=a^{m\cdot n}`,String.raw`(a\cdot b)^n=a^n b^n`,String.raw`\left(\dfrac{a}{b}\right)^{n}=\dfrac{a^n}{b^n}`,String.raw`a^{-n}=\dfrac{1}{a^n}`,[String.raw`a^0=1`,'a ≠ 0']]],
+  ['Radicales',[String.raw`\sqrt[n]{a^m}=a^{m/n}`,String.raw`\sqrt[n]{a\cdot b}=\sqrt[n]{a}\cdot\sqrt[n]{b}`,String.raw`\sqrt[n]{\dfrac{a}{b}}=\dfrac{\sqrt[n]{a}}{\sqrt[n]{b}}`,String.raw`\sqrt[m]{\sqrt[n]{a}}=\sqrt[m\cdot n]{a}`,String.raw`\sqrt{a^2}=|a|`,[String.raw`\sqrt{a+b}\neq\sqrt{a}+\sqrt{b}`,'la raíz no se distribuye en la suma'],[String.raw`\dfrac{1}{\sqrt{a}-\sqrt{b}}=\dfrac{\sqrt{a}+\sqrt{b}}{a-b}`,'racionalizar con el conjugado']]],
+  ['Productos notables y ecuaciones',[String.raw`(a\pm b)^2=a^2\pm 2ab+b^2`,String.raw`(a+b)(a-b)=a^2-b^2`,[String.raw`x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}`,'ax² + bx + c = 0'],[String.raw`a\cdot b=0\iff a=0\ \lor\ b=0`,'']]],
+  ['Desigualdades y valor absoluto',[[String.raw`a<b\ \Rightarrow\ a+c<b+c`,''],[String.raw`a<b,\ c>0\ \Rightarrow\ ac<bc`,''],[String.raw`a<b,\ c<0\ \Rightarrow\ ac>bc`,'se invierte la desigualdad'],String.raw`|x|=\begin{cases}x & x\ge 0\\-x & x<0\end{cases}`,[String.raw`|x|<a\iff -a<x<a`,'a > 0'],[String.raw`|x|>a\iff x<-a\ \lor\ x>a`,'a > 0'],String.raw`|a\cdot b|=|a|\cdot|b|`]],
+  ['Exponenciales y logaritmos',[[String.raw`\log_a x=y\iff a^y=x`,'a > 0, a ≠ 1, x > 0'],String.raw`\log_a(x\cdot y)=\log_a x+\log_a y`,String.raw`\log_a\dfrac{x}{y}=\log_a x-\log_a y`,String.raw`\log_a x^n=n\log_a x`,String.raw`\log_a a^x=x \qquad a^{\log_a x}=x`,[String.raw`\log_a x=\dfrac{\ln x}{\ln a}`,'cambio de base'],String.raw`\log_a 1=0 \qquad \log_a a=1`]]],
+ g2:[
+  ['Vectores en el plano',[String.raw`\overrightarrow{AB}=B-A`,String.raw`\vec u+\vec v=(u_1+v_1;\ u_2+v_2)`,String.raw`k\,\vec u=(k u_1;\ k u_2)`,String.raw`|\vec u|=\sqrt{u_1^2+u_2^2}`,[String.raw`\vec u=|\vec u|\,(\cos\alpha;\ \sen\alpha)`,'α: ángulo con el eje x'],[String.raw`\hat u=\dfrac{\vec u}{|\vec u|}`,'versor (módulo 1)']]],
+  ['Producto escalar',[String.raw`\vec u\cdot\vec v=u_1v_1+u_2v_2+u_3v_3`,String.raw`\vec u\cdot\vec v=|\vec u|\,|\vec v|\cos\theta`,String.raw`\cos\theta=\dfrac{\vec u\cdot\vec v}{|\vec u|\,|\vec v|}`,[String.raw`\vec u\perp\vec v\iff\vec u\cdot\vec v=0`,'ortogonales'],String.raw`\vec u\cdot\vec u=|\vec u|^2`,[String.raw`\operatorname{proy}_{\vec v}\vec u=\dfrac{\vec u\cdot\vec v}{|\vec v|^2}\,\vec v`,'proyección']]],
+  ['Producto vectorial (ℝ³)',[String.raw`\vec u\times\vec v=\begin{vmatrix}\vec i&\vec j&\vec k\\u_1&u_2&u_3\\v_1&v_2&v_3\end{vmatrix}`,String.raw`|\vec u\times\vec v|=|\vec u|\,|\vec v|\,\sen\theta`,[String.raw`A=|\vec u\times\vec v|`,'área del paralelogramo'],[String.raw`A=\tfrac12\,|\overrightarrow{AB}\times\overrightarrow{AC}|`,'área del triángulo'],String.raw`\vec v\times\vec u=-(\vec u\times\vec v)`,[String.raw`\vec u\times\vec v\perp\vec u,\ \vec v`,'']]]],
+ g3:[
+  ['Rectas',[[String.raw`(x;y)=P_0+t\,\vec v`,'vectorial'],[String.raw`\dfrac{x-x_0}{v_1}=\dfrac{y-y_0}{v_2}`,'simétrica'],[String.raw`y=mx+b`,'explícita'],String.raw`m=\dfrac{y_2-y_1}{x_2-x_1}=\tg\alpha`,String.raw`y-y_0=m(x-x_0)`,[String.raw`m_1=m_2`,'paralelas'],[String.raw`m_1\cdot m_2=-1`,'perpendiculares']]],
+  ['Planos',[[String.raw`a(x-x_0)+b(y-y_0)+c(z-z_0)=0`,'normal n = (a; b; c)'],String.raw`ax+by+cz+d=0`,[String.raw`\vec n=\overrightarrow{AB}\times\overrightarrow{AC}`,'normal por 3 puntos'],[String.raw`d=\dfrac{|ax_0+by_0+cz_0+d|}{\sqrt{a^2+b^2+c^2}}`,'distancia punto–plano']]],
+  ['Cónicas',[[String.raw`(x-h)^2+(y-k)^2=r^2`,'circunferencia'],[String.raw`\dfrac{(x-h)^2}{a^2}+\dfrac{(y-k)^2}{b^2}=1`,'elipse'],[String.raw`c^2=a^2-b^2`,'focos de la elipse'],[String.raw`\dfrac{(x-h)^2}{a^2}-\dfrac{(y-k)^2}{b^2}=1`,'hipérbola'],[String.raw`c^2=a^2+b^2`,'focos de la hipérbola'],[String.raw`y-k=\pm\dfrac{b}{a}(x-h)`,'asíntotas'],[String.raw`(x-h)^2=4p\,(y-k)`,'parábola vertical'],[String.raw`(y-k)^2=4p\,(x-h)`,'parábola horizontal']]]],
+ g4:[
+  ['Dominio',[[String.raw`\sqrt{g(x)}\ \Rightarrow\ g(x)\ge 0`,''],[String.raw`\dfrac{1}{g(x)}\ \Rightarrow\ g(x)\neq 0`,''],[String.raw`\ln g(x)\ \Rightarrow\ g(x)>0`,'']]],
+  ['Paridad, composición e inversa',[[String.raw`f(-x)=f(x)`,'par: simétrica respecto del eje y'],[String.raw`f(-x)=-f(x)`,'impar: simétrica respecto del origen'],String.raw`(f\circ g)(x)=f\big(g(x)\big)`,String.raw`f^{-1}\big(f(x)\big)=x`,[String.raw`y=f(x)\iff x=f^{-1}(y)`,'']]],
+  ['Transformaciones',[[String.raw`y=f(x-h)+k`,'traslada h a la derecha y k hacia arriba'],[String.raw`y=a\,f(x)`,'estira (a > 1) o comprime verticalmente'],[String.raw`y=-f(x)`,'refleja respecto del eje x'],[String.raw`y=f(-x)`,'refleja respecto del eje y']]],
+  ['Exponenciales y trigonométricas',[[String.raw`f(x)=a^x`,'a > 1 crece, 0 < a < 1 decrece'],String.raw`\sen^2x+\cos^2x=1`,String.raw`\tg x=\dfrac{\sen x}{\cos x}`,[String.raw`\pi\ \text{rad}=180^\circ`,''],String.raw`\sen(-x)=-\sen x \qquad \cos(-x)=\cos x`]]],
+ g5:[
+  ['Álgebra de límites',[String.raw`\lim(f\pm g)=\lim f\pm\lim g`,String.raw`\lim(f\cdot g)=\lim f\cdot\lim g`,[String.raw`\lim\dfrac{f}{g}=\dfrac{\lim f}{\lim g}`,'si lím g ≠ 0'],[String.raw`\lim_{x\to a^-}f=\lim_{x\to a^+}f=L`,'laterales iguales ⇔ lím f = L']]],
+  ['Límites útiles',[String.raw`\lim_{x\to 0}\dfrac{\sen x}{x}=1`,[String.raw`\lim_{x\to\pm\infty}\dfrac{1}{x^n}=0`,'n > 0'],String.raw`\lim_{x\to\infty}\left(1+\dfrac{1}{x}\right)^{x}=e`,[String.raw`(\sqrt a-\sqrt b)(\sqrt a+\sqrt b)=a-b`,'para indeterminaciones con raíces'],[String.raw`\dfrac{k}{0^{\pm}}=\pm\infty`,'k > 0']]],
+  ['Asíntotas',[[String.raw`\lim_{x\to a}f(x)=\pm\infty`,'vertical x = a'],[String.raw`\lim_{x\to\pm\infty}f(x)=L`,'horizontal y = L'],[String.raw`m=\lim_{x\to\pm\infty}\dfrac{f(x)}{x}`,'oblicua y = mx + b'],String.raw`b=\lim_{x\to\pm\infty}\big(f(x)-mx\big)`]],
+  ['Continuidad en x = a',[[String.raw`\lim_{x\to a}f(x)=f(a)`,'f(a) existe, el límite existe y coinciden']]]],
+ g6:[
+  ['Definición',[String.raw`f'(a)=\lim_{h\to 0}\dfrac{f(a+h)-f(a)}{h}`,[String.raw`y=f(a)+f'(a)(x-a)`,'recta tangente'],[String.raw`v_m=\dfrac{f(b)-f(a)}{b-a}`,'velocidad media']]],
+  ['Derivadas básicas',[String.raw`(c)'=0`,String.raw`(x^n)'=n\,x^{n-1}`,String.raw`(\sqrt{x})'=\dfrac{1}{2\sqrt{x}}`,String.raw`(e^x)'=e^x`,String.raw`(a^x)'=a^x\ln a`,String.raw`(\ln x)'=\dfrac{1}{x}`,String.raw`(\sen x)'=\cos x`,String.raw`(\cos x)'=-\sen x`,String.raw`(\tg x)'=\dfrac{1}{\cos^2x}`]],
+  ['Reglas',[String.raw`(f\pm g)'=f'\pm g'`,String.raw`(k\,f)'=k\,f'`,[String.raw`(f\cdot g)'=f'g+fg'`,'producto'],[String.raw`\left(\dfrac{f}{g}\right)'=\dfrac{f'g-fg'}{g^2}`,'cociente'],[String.raw`\big(f(g(x))\big)'=f'\big(g(x)\big)\cdot g'(x)`,'regla de la cadena'],[String.raw`y=f^g\ \Rightarrow\ \ln y=g\ln f`,'derivación logarítmica']]]]
+};
+const KMAC={'\\sen':'\\operatorname{sen}','\\tg':'\\operatorname{tg}'};
+function renderProps(gid){
+  const body=$('#pd-body');body.innerHTML='';
+  if(!window.katex){body.innerHTML='<p class="hint">Las fórmulas necesitan conexión a internet para mostrarse.</p>';return}
+  (PROPS[gid]||[]).forEach(([title,list])=>{body.appendChild(H('h3',{},title));const w=H('div',{class:'props'});
+    list.forEach(p=>{const [t,n]=Array.isArray(p)?p:[p,''];let h;try{h=katex.renderToString('\\displaystyle '+t,{macros:{...KMAC},throwOnError:false})}catch(e){h=t}w.appendChild(H('span',{class:'prop halo'},h+(n?`<small>${n}</small>`:'')))});body.appendChild(w)});
+  $('#pd-tabs').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.g===gid));body.scrollTop=0}
+GUIDES.filter(g=>PROPS[g.id]).forEach(g=>{const b=H('button',{type:'button','data-g':g.id,'aria-pressed':'false'},`<span class="n">G${g.n}</span>${g.t}`);b.onclick=()=>renderProps(g.id);$('#pd-tabs').appendChild(b)});
+$('#propbtn').onclick=()=>{const d=$('#propdlg');renderProps(PROPS[VIEWG]?VIEWG:'g1');d.showModal();const a=$('#pd-tabs [aria-pressed="true"]');a&&a.scrollIntoView({block:'nearest',inline:'center'})};
+$('#propdlg-x').onclick=()=>$('#propdlg').close();
+$('#propdlg').addEventListener('click',e=>{if(e.target===e.currentTarget)$('#propdlg').close()});
+
 const tabs=$('#tabs'),gnav=$('#guides'),main=$('#main'),P={};
 GUIDES.forEach(g=>{const bt=H('button',{type:'button','aria-pressed':'false',id:'gb-'+g.id},`<span class="n">${g.tag||'G'+g.n}</span>${g.t}`);bt.onclick=()=>show(SECTIONS.find(s=>s.g===g.id).id,true);gnav.appendChild(bt)});
 SECTIONS.forEach(s=>{const bt=H('button',{role:'tab',type:'button','aria-selected':'false','aria-controls':'p-'+s.id,id:'t-'+s.id,class:s.pp?'pptab':''},`<span class="n">${s.n}</span>${s.t}`);bt.onclick=()=>show(s.id,true);tabs.appendChild(bt);
@@ -537,7 +673,7 @@ SECTIONS.forEach(s=>{const bt=H('button',{role:'tab',type:'button','aria-selecte
 function show(id,scroll){const S0=SECTIONS.find(s=>s.id===id),g=GUIDES.find(q=>q.id===S0.g);VIEWG=g.id;
   GUIDES.forEach(q=>$('#gb-'+q.id).setAttribute('aria-pressed',q.id===g.id));
   SECTIONS.forEach(s=>{P[s.id].hidden=s.id!==id;const t=$('#t-'+s.id);t.hidden=s.g!==g.id;t.setAttribute('aria-selected',s.id===id)});
-  $('#gtitle').textContent=g.t;$('#geyebrow').textContent=g.tag?'UNaM · FCEQyN · Parciales y recuperatorios anteriores':`UNaM · FCEQyN · Bioquímica · Guía N°${g.n}`;$('.progress').style.visibility=g.tag?'hidden':'';updateProg();
+  $('#gtitle').textContent=g.t;$('#geyebrow').textContent=g.tag?'UNaM · FCEQyN · Parciales y recuperatorios anteriores':`UNaM · FCEQyN · Bioquímica · Guía N°${g.n}`;$('.progress').style.visibility=g.tag?'hidden':'';$('#propbtn-g').textContent=PROPS[g.id]?'G'+g.n:'Todas';updateProg();
   $('#t-'+id).scrollIntoView({block:'nearest',inline:'center'});if(scroll)window.scrollTo({top:$('.navs').offsetTop-4,behavior:REDUCE?'auto':'smooth'});
   const pn=P[id];pn.classList.remove('enter');[...pn.children].forEach((c,i)=>c.style.setProperty('--i',Math.min(i,8)));void pn.offsetWidth;pn.classList.add('enter');
   moveInd();try{history.replaceState(null,'','#'+id)}catch(e){}if(P[id].onshow)P[id].onshow();window.dispatchEvent(new Event('panelshow'))}
@@ -545,6 +681,7 @@ function moveInd(){const nav=$('#guides');let ind=$('.ind',nav);if(!ind){ind=H('
 window.addEventListener('resize',()=>moveInd());document.fonts&&document.fonts.ready.then(()=>moveInd());
 function head(sec,title,intro){sec.appendChild(H('h2',{},title));if(intro)sec.appendChild(H('p',{class:'intro'},intro))}
 function card(sec,n,title,en){const c=H('article',{class:'ex'});c.innerHTML=`<div class="ex-h"><span class="ex-n">${n==='✦'?'Herramienta':'Ej. '+n}</span><h3>${title}</h3></div>${en?`<p class="en">${en}</p>`:''}`;sec.appendChild(c);return c}
+function props(parent,list){const w=H('div',{class:'props'});list.forEach(([t,h])=>w.appendChild(H('span',{class:'prop halo'},window.katex?katex.renderToString(t):h)));parent.appendChild(w);return w}
 function sub(parent,l,html){const s=H('div',{class:'sub'});s.innerHTML=`<div class="sub-h"><span class="l">${l}</span><span class="m">${html}</span></div>`;parent.appendChild(s);return s}
 
 /* ================= 1 · INVERSOS ================= */
@@ -628,7 +765,7 @@ function sub(parent,l,html){const s=H('div',{class:'sub'});s.innerHTML=`<div cla
 (function(){
   const sec=P.potencias;head(sec,'Simplificación de potencias','Primero elegí el resultado que te parece correcto; después revisá la resolución paso a paso con la propiedad que justifica cada uno.');
   const cd=card(sec,3,'Simplificar con exponentes positivos');
-  const props=H('div',{class:'hint'},'Propiedades: a<sup>m</sup>·a<sup>n</sup> = a<sup>m+n</sup> · a<sup>m</sup>/a<sup>n</sup> = a<sup>m−n</sup> · (a<sup>m</sup>)<sup>n</sup> = a<sup>m·n</sup> · (a·b)<sup>n</sup> = a<sup>n</sup>b<sup>n</sup> · a<sup>−n</sup> = 1/a<sup>n</sup>');cd.appendChild(props);
+  props(cd,[['a^m\\cdot a^n = a^{m+n}','a<sup>m</sup>·a<sup>n</sup> = a<sup>m+n</sup>'],['\\dfrac{a^m}{a^n} = a^{m-n}','a<sup>m</sup>/a<sup>n</sup> = a<sup>m−n</sup>'],['(a^m)^n = a^{m\\cdot n}','(a<sup>m</sup>)<sup>n</sup> = a<sup>m·n</sup>'],['(a\\cdot b)^n = a^n b^n','(a·b)<sup>n</sup> = a<sup>n</sup>b<sup>n</sup>'],['a^{-n} = \\dfrac{1}{a^n}','a<sup>−n</sup> = 1/a<sup>n</sup>']]);
   const E=[
    ['a)',`(5${w}${sp(2)}${z}${sp('−2')})${sp(2)} (${z}${sp(3)})`,[`25${w}${sp(4)}/${z}`,`10${w}${sp(4)}/${z}`,`25${w}${sp(4)}${z}`],[
      [`5${sp(2)}·(${w}${sp(2)})${sp(2)}·(${z}${sp('−2')})${sp(2)}·${z}${sp(3)}`,'Potencia de un producto: (a·b)ⁿ = aⁿ·bⁿ'],
@@ -656,7 +793,7 @@ function sub(parent,l,html){const s=H('div',{class:'sub'});s.innerHTML=`<div cla
 (function(){
   const sec=P.radicales;head(sec,'Radicales','Las letras representan reales positivos. Pasar de raíz a exponente fraccionario suele ser el camino más corto.');
   const cd=card(sec,4,'Reducir expresiones con radicales');
-  cd.appendChild(H('div',{class:'hint'},`${R('n','a<sup>m</sup>')} = a<sup>m/n</sup> · ${R('n','a·b')} = ${R('n','a')}·${R('n','b')} · ${R('m',R('n','a'))} = ${R('m·n','a')}`));
+  props(cd,[['\\sqrt[n]{a^m} = a^{m/n}',` = a<sup>m/n</sup>`],['\\sqrt[n]{a\\cdot b} = \\sqrt[n]{a}\\cdot\\sqrt[n]{b}',` = ·`],['\\sqrt[m]{\\sqrt[n]{a}} = \\sqrt[m\\cdot n]{a}',` = `]]);
   const E=[
    ['a)',R(4,`${x}${sp(4)}${y}${sp(2)}${z}${sp(2)}`),[`${x}${R('',`${y}${z}`)}`,`${x}${y}${z}`,`${x}${sp(2)}${R('',`${y}${z}`)}`],[
      [`${x}${sp('4/4')}·${y}${sp('2/4')}·${z}${sp('2/4')}`,'La raíz de un producto es el producto de las raíces; cada una como exponente fraccionario'],
